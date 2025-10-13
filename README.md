@@ -83,6 +83,7 @@ results/channel-to-bank-3.json
 - Do NOT run `remove-hugepage.sh` unless you know what you are doing.
 - Always run these scripts with root privileges.
 - Do not interrupt a run to avoid partial data.
+- If you have your bank functions in a form of Hex values (e.g., `[0x2040, 0x24000, 0x48000, 0x90000]`), you can use `mat_gen.py` to create mapping matrix and inject the output to both Blacksmith source codes.
 
 ---
 
