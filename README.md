@@ -83,3 +83,27 @@ results/channel-to-bank-3.json
 - Do NOT run `remove-hugepage.sh` unless you know what you are doing.
 - Always run these scripts with root privileges.
 - Do not interrupt a run to avoid partial data.
+
+---
+
+## Author
+
+**Nima Sayadi**  
+Master of Applied Research in Computer Science, Hof University of Applied Sciences  
+Supervisors: Prof. Dr. Florian Adamsky & Martin Heckel, M.Sc.
+Cybersecurity Branch
+
+---
+
+## Citation
+
+If you use this tool in your research, please cite:
+
+> N. Sayadi, *ThreadHammer: A Multi-Thread Modification of Blacksmith*,  
+> Master’s Thesis, Hof University of Applied Sciences, 2025.
+
+---
+
+## License
+
+MIT License — see `LICENSE` for details.
