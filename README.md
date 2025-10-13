@@ -92,7 +92,7 @@ results/channel-to-bank-3.json
 **Nima Sayadi**  
 Master of Applied Research in Computer Science, Hof University of Applied Sciences  
 Supervisors: Prof. Dr. Florian Adamsky & Martin Heckel, M.Sc.
-Cybersecurity Branch
+(System & Network Security)
 
 ---
 
