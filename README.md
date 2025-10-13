@@ -55,7 +55,7 @@ After this, you can split patterns you need for multi-threading with the help of
 ### 3. Run Sweeping Experiments
 To start single-threaded or multi-threaded sweeping:
 ```bash
-bash run.sh [-j pattern.json | -p pattern_dir -m] [-r repetition]
+sudo bash run.sh [-j pattern.json | -p pattern_dir -m] [-r repetition]
 ```
 - `-j` : Path to a single pattern JSON file (single-thread mode)
 - `-p` : Path to a folder with pattern files (required for multi-thread mode)
