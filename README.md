@@ -29,16 +29,57 @@ It keeps full compatibility with Blacksmith’s patterns and JSON outputs, makin
 - C++17 or newer  
 - Libraries: `pthread`, `asmjit`, `nlohmann-json`, `cmake`, `make`  
 - Python 3 (for analysis)  
-- Correct DRAM addressing function mapping, hardcoded into the source code
+- Correct DRAM addressing function mapping, hardcoded into the source code of both `/Blacksmith` and `/Blacksmith-Original` (The mappings should be same for both)
 
 ---
 
 ## 🔧 Quick Start
 
 ```bash
-git clone https://github.com/<yourusername>/ThreadHammer.git
+git clone https://github.com/nima-sayadi/ThreadHammer.git
 cd ThreadHammer
 ```
+### 1. Adjust Configuration
+Open `conf.cfg` and change values according to your requirements:
+- `DEFAULT_RUNTIME` is in seconds and is used only for fuzzing run of Blacksmith to obtain patterns
+- `N_THREADS` is used to set maximum threads for your system. Read the description in `conf.cfg`.
+Open `/Blacksmith/include/GlobalDefines.hpp` and set `MAX_SWEEP_SIZE` based on your requirements (For Sweeping).
 
-### 1. Measure DRAM channels (optional)
-`sudo ./threadhammer --measure-channels`
+### 2. Run One Fuzzing Iteration
+To obtain patterns outputted as `/fuzz-summary.json`, you need a fuzzing run simply by:
+```bash
+sudo bash run.sh
+```
+After this, you can split patterns you need for multi-threading with the help of Python tools in `/scripts` or your own tools.
+
+### 3. Run Sweeping Experiments
+To start single-threaded or multi-threaded sweeping:
+```bash
+bash run.sh [-j pattern.json | -p pattern_dir -m] [-r repetition]
+```
+- `-j` : Path to a single pattern JSON file (single-thread mode)
+- `-p` : Path to a folder with pattern files (required for multi-thread mode)
+- `-m` : Enable multi-threading (must be used with `-p`)
+- `-r` : Number of repetitions (default: 1)
+Note: You can adjust the `MAX_SWEEP_SIZE` in `/Blacksmith/include/GlobalDefines.hpp` before starting your sweeping phase.
+
+### Measure Channels (optional - only if your system has 2 DIMMs)
+To measure DRAM channel mappings to banks and store the results in `results/`:
+```bash
+sudo bash measure-channel.sh -o channel-to-bank -r 3
+```
+- `-o` : Output file name (required)
+- `-r` : Number of repetitions (default: 1)
+
+Example output files:
+```
+results/channel-to-bank-1.json
+results/channel-to-bank-2.json
+results/channel-to-bank-3.json
+```
+
+## Imporant Notes
+- Do not remove/un-mount Hugepages during your experiment phases, otherwise your bank to channel mappings and obtained patterns become invalid and you will need to start over from the fuzzing in step 1.
+- Do NOT run `remove-hugepage.sh` unless you know what you are doing.
+- Always run these scripts with root privileges.
+- Do not interrupt a run to avoid partial data.
