@@ -1,6 +1,6 @@
 # ThreadHammer
 
-*A multi-threaded extension of Blacksmith for Rowhammer research.*
+*A multi-threaded extension of Blacksmith for Rowhammer research.* A tool developed for my Master Thesis.
 
 ---
 
